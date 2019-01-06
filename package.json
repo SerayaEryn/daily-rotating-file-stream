@@ -1,0 +1,39 @@
+{
+  "name": "daily-rotating-file-stream",
+  "version": "1.0.0",
+  "description": "file stream being rotating daily",
+  "main": "lib/DailyRotatingFileStream.js",
+  "scripts": {
+    "unit": "tap test/test.js",
+    "test": "npm run lint && npm run unit",
+    "lint": "standard lib/* test/*.js benchmark/*",
+    "coveralls": "npm run unit --  --cov",
+    "coverage": "npm run coveralls && tap --coverage-report=lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SerayaEryn/daily-rotating-file-stream.git"
+  },
+  "author": "Denis Fäcke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SerayaEryn/daily-rotating-file-stream/issues"
+  },
+  "homepage": "https://github.com/SerayaEryn/daily-rotating-file-stream#readme",
+  "devDependencies": {
+    "coveralls": "^3.0.2",
+    "standard": "^12.0.1",
+    "tap": "^12.1.1"
+  },
+  "dependencies": {
+    "fast-date-format": "^2.0.0",
+    "mkdirp": "^0.5.1",
+    "sonic-boom": "^0.7.3"
+  },
+  "keywords": [
+    "daily",
+    "rotate",
+    "file",
+    "stream"
+  ]
+}
