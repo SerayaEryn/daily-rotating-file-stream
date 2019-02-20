@@ -32,6 +32,10 @@ The size of the internal buffer that is used to store the logs before writing th
 
 Writes a string to the file.
 
+## DailyRotatingFileStream#flush()
+
+Flushes the content of the buffer to the file.
+
 ## DailyRotatingFileStream#destroy()
 
 Destroys the stream.

@@ -136,6 +136,26 @@ test('Should destroy stream', (t) => {
   })
 })
 
+test('Should flush', (t) => {
+  t.plan(2)
+  const options = {
+    fileName: join(__dirname, '/testfiles5/console%DATE%.log')
+  }
+  const fileName = getFileName(5)
+  const stream = new DailyRotatingFileStream(options)
+
+  stream.write('hello world')
+  stream.flush()
+  stream.on('finish', () => {
+    fs.readFile(fileName, (err, buffer) => {
+      t.error(err)
+      t.strictEquals(buffer.toString(), 'hello world')
+      cleanUp(fileName)
+    })
+  })
+  stream.end()
+})
+
 function cleanUp (fileName) {
   if (fs.existsSync(fileName)) {
     fs.unlinkSync(fileName)
