@@ -1,14 +1,14 @@
 'use strict'
 
 const DailyRotatingFileStream = require('..')
-const test = require('tap').test
+const test = require('ava')
 const { join } = require('path')
 const DateFormat = require('fast-date-format')
 const fs = require('fs')
 
 const dateFormat = new DateFormat('DDMMYYYY')
 
-test('Should end stream', (t) => {
+test.cb('Should end stream', (t) => {
   t.plan(1)
   const options = {
     fileName: join(__dirname, '/testfiles0/console%DATE%.log')
@@ -18,12 +18,13 @@ test('Should end stream', (t) => {
   stream.on('finish', () => {
     t.pass()
     cleanUp(getFileName(0))
+    t.end()
   })
   stream.end()
 })
 
-test('Should write to file', (t) => {
-  t.plan(2)
+test.cb('Should write to file', (t) => {
+  t.plan(4)
   const options = {
     fileName: join(__dirname, '/testfiles1/console%DATE%.log')
   }
@@ -32,17 +33,20 @@ test('Should write to file', (t) => {
 
   stream.write('hello world')
   stream.on('finish', () => {
+    t.pass()
     fs.readFile(fileName, (err, buffer) => {
-      t.error(err)
-      t.strictEquals(buffer.toString(), 'hello world')
+      t.falsy(err)
+      t.truthy(buffer)
+      t.is(buffer.toString(), 'hello world')
       cleanUp(fileName)
+      t.end()
     })
   })
   stream.end()
 })
 
-test('Should write to file with bufferSize', (t) => {
-  t.plan(2)
+test.cb('Should write to file with bufferSize', (t) => {
+  t.plan(3)
   const options = {
     fileName: join(__dirname, '/testfiles2/console%DATE%.log'),
     bufferSize: 32
@@ -53,16 +57,18 @@ test('Should write to file with bufferSize', (t) => {
   stream.write('hello world')
   stream.on('finish', () => {
     fs.readFile(fileName, (err, buffer) => {
-      t.error(err)
-      t.strictEquals(buffer.toString(), 'hello world')
+      t.falsy(err)
+      t.truthy(buffer)
+      t.is(buffer.toString(), 'hello world')
       cleanUp(fileName)
+      t.end()
     })
   })
   stream.end()
 })
 
-test('Should write to file with rotating', (t) => {
-  t.plan(3)
+test.cb('Should write to file with rotating', (t) => {
+  t.plan(4)
   const options = {
     fileName: join(__dirname, '/testfiles3/console%DATE%.log')
   }
@@ -78,17 +84,19 @@ test('Should write to file with rotating', (t) => {
 
     stream.on('finish', () => {
       fs.readFile(fileName, (err, buffer) => {
-        t.error(err)
-        t.strictEquals(buffer.toString(), 'hello world')
+        t.falsy(err)
+        t.truthy(buffer)
+        t.is(buffer.toString(), 'hello world')
         cleanUp(fileName)
+        t.end()
       })
     })
     stream.end()
   })
 })
 
-test('Should write to file once ready', (t) => {
-  t.plan(2)
+test.cb('Should write to file once ready', (t) => {
+  t.plan(3)
   const options = {
     fileName: join(__dirname, '/testfiles4/console%DATE%.log')
   }
@@ -98,15 +106,17 @@ test('Should write to file once ready', (t) => {
   stream.write('hello world')
   stream.on('finish', () => {
     fs.readFile(fileName, (err, buffer) => {
-      t.error(err)
-      t.strictEquals(buffer.toString(), 'hello world')
+      t.falsy(err)
+      t.truthy(buffer)
+      t.is(buffer.toString(), 'hello world')
       cleanUp(fileName)
+      t.end()
     })
   })
   stream.end()
 })
 
-test('Should end ready stream', (t) => {
+test.cb('Should end ready stream', (t) => {
   t.plan(2)
   const options = {
     fileName: join(__dirname, '/testfiles5/console%DATE%.log')
@@ -118,39 +128,44 @@ test('Should end ready stream', (t) => {
     stream.on('finish', () => {
       t.pass('finish emitted')
       cleanUp(getFileName(5))
+      t.end()
     })
     stream.end()
   })
 })
 
-test('Should destroy stream', (t) => {
+test.cb('Should destroy stream', (t) => {
   t.plan(1)
   const options = {
-    fileName: join(__dirname, '/testfiles5/console%DATE%.log')
+    fileName: join(__dirname, '/testfiles6/console%DATE%.log')
   }
 
   const stream = new DailyRotatingFileStream(options)
   stream.destroy()
   stream.on('close', () => {
-    t.ok(stream.destroyed)
+    t.truthy(stream.destroyed)
+    cleanUp(getFileName(6))
+    t.end()
   })
 })
 
-test('Should flush', (t) => {
-  t.plan(2)
+test.cb('Should flush', (t) => {
+  t.plan(3)
   const options = {
-    fileName: join(__dirname, '/testfiles5/console%DATE%.log')
+    fileName: join(__dirname, '/testfiles7/console%DATE%.log')
   }
-  const fileName = getFileName(5)
+  const fileName = getFileName(7)
   const stream = new DailyRotatingFileStream(options)
 
   stream.write('hello world')
   stream.flush()
   stream.on('finish', () => {
     fs.readFile(fileName, (err, buffer) => {
-      t.error(err)
-      t.strictEquals(buffer.toString(), 'hello world')
+      t.falsy(err)
+      t.truthy(buffer)
+      t.is(buffer.toString(), 'hello world')
       cleanUp(fileName)
+      t.end()
     })
   })
   stream.end()
