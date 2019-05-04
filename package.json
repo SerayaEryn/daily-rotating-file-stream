@@ -36,5 +36,8 @@
     "rotate",
     "file",
     "stream"
-  ]
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  }
 }
