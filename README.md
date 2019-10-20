@@ -1,6 +1,6 @@
 # daily-rotating-file-stream
 
-[![Build Status](https://travis-ci.org/SerayaEryn/daily-rotating-file-stream.svg?branch=master)](https://travis-ci.org/SerayaEryn/daily-rotating-file-stream)
+![Build Status](https://github.com/SerayaEryn/daily-rotating-file-stream/workflows/ci/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/SerayaEryn/daily-rotating-file-stream/badge.svg?branch=master)](https://coveralls.io/github/SerayaEryn/daily-rotating-file-stream?branch=master)
 [![NPM version](https://img.shields.io/npm/v/daily-rotating-file-stream.svg?style=flat)](https://www.npmjs.com/package/daily-rotating-file-stream)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) [![Greenkeeper badge](https://badges.greenkeeper.io/SerayaEryn/daily-rotating-file-stream.svg)](https://greenkeeper.io/)

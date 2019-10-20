@@ -7,7 +7,7 @@
     "unit": "ava test/test.js",
     "test": "npm run lint && npm run unit",
     "lint": "standard lib/* test/*.js benchmark/*",
-    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "nyc npm test",
     "coverage": "nyc npm test && nyc report --reporter=html"
   },
   "repository": {
@@ -22,14 +22,13 @@
   "homepage": "https://github.com/SerayaEryn/daily-rotating-file-stream#readme",
   "devDependencies": {
     "ava": "^2.0.0",
-    "coveralls": "^3.0.2",
     "nyc": "^14.1.0",
     "standard": "^14.0.0"
   },
   "dependencies": {
-    "fast-date-format": "^2.2.2",
+    "fast-date-format": "^2.2.4",
     "mkdirp": "^0.5.1",
-    "sonic-boom": "^0.7.5"
+    "sonic-boom": "^0.7.6"
   },
   "keywords": [
     "daily",
@@ -39,5 +38,8 @@
   ],
   "engines": {
     "node": ">=8.0.0"
-  }
+  },
+  "files": [
+    "lib"
+  ]
 }
