@@ -27,9 +27,9 @@
     "standard": "^14.0.0"
   },
   "dependencies": {
-    "fast-date-format": "^2.2.2",
+    "fast-date-format": "^2.2.4",
     "mkdirp": "^0.5.1",
-    "sonic-boom": "^0.7.5"
+    "sonic-boom": "^0.7.6"
   },
   "keywords": [
     "daily",
