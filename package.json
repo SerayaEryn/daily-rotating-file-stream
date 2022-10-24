@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/SerayaEryn/daily-rotating-file-stream#readme",
   "devDependencies": {
-    "ava": "^3.0.0",
+    "ava": "^5.0.1",
     "nyc": "^15.0.0",
     "standard": "^15.0.0"
   },
