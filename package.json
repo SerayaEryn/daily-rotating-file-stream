@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "fast-date-format": "^2.2.4",
-    "mkdirp": "^1.0.0",
+    "mkdirp": "^2.1.5",
     "sonic-boom": "^2.3.0"
   },
   "keywords": [
